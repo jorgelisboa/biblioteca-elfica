@@ -1,10 +1,10 @@
 services:
   web:
     build:
-      context: ./web
-      dockerfile: Dockerfile
+      context: ./web/biblioteca-elfica-web
+      dockerfile: ../Dockerfile
       target: deps          # para na etapa de instalar dependências
-    command: npm run dev
+    command: npm run dev -- -H 0.0.0.0
     ports:
       - "3000:3000"
     environment:
@@ -17,7 +17,7 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - ./web:/app          # monta o código fonte para hot reload
+      - ./web/biblioteca-elfica-web:/app  # monta o código fonte para hot reload
       - /app/node_modules   # evita sobrescrever node_modules do container
       - maps_data:/app/public/maps
 
