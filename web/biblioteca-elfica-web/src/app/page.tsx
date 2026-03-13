@@ -17,6 +17,7 @@ const sistemas = [
     locked: true,
     gradient:
       "linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #0f0a1e 100%)",
+    image: "/media/ordem.webp",
   },
   {
     name: "D&D 5e",

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Lock } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 interface SystemCardProps {
@@ -11,6 +12,7 @@ interface SystemCardProps {
   locked: boolean;
   gradient: string;
   index: number;
+  image?: string;
 }
 
 export function SystemCard({
@@ -20,6 +22,7 @@ export function SystemCard({
   locked,
   gradient,
   index,
+  image,
 }: SystemCardProps) {
   const content = (
     <motion.div
@@ -28,12 +31,28 @@ export function SystemCard({
           ? "cursor-not-allowed opacity-60"
           : "cursor-pointer hover:border-emerald-500/50 hover:brightness-110 hover:scale-[1.03]"
       }`}
-      style={{ background: gradient }}
+      style={!image ? { background: gradient } : undefined}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
     >
-      {/* Glass overlay */}
+      {image && (
+        <Image
+          src={image}
+          alt={name}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 100vw, 33vw"
+        />
+      )}
+
+      {/* Color filter overlay */}
+      <div
+        className="absolute inset-0"
+        style={{ background: gradient, opacity: image ? 0.7 : 1, mixBlendMode: image ? "multiply" : "normal" }}
+      />
+
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
 
       {locked && (
