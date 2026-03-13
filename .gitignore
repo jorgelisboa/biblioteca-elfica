@@ -1,0 +1,36 @@
+# Variáveis de ambiente (nunca commitar)
+.env
+.env.local
+.env.*.local
+
+# Dependências
+node_modules/
+web/node_modules/
+socket/node_modules/
+
+# Next.js
+web/.next/
+web/out/
+
+# Build
+web/dist/
+socket/dist/
+
+# Uploads de mapas (gerado em runtime)
+web/public/maps/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Prisma
+web/prisma/migrations/  # descomente se não quiser versionar as migrations
